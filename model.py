@@ -37,4 +37,6 @@ def change(index: int, new: dict[str, str]) :
         if field != '' :
             phone_book[index - 1][key] = field
     
-    
+
+def delete_contact(index: int):
+    phone_book.pop(index - 1)

@@ -9,22 +9,22 @@ def start() :
     while True :
         choice = menu()
         match choice :
-            case 1 :
+            case 1 : # open
                 model.open_file()
                 print_message(text.open_successful)
-            case 2 :
-                pass # save
-            case 3 :
+            case 2 : # save
+                pass 
+            case 3 : # show
                 show_contacts(model.phone_book)
-            case 4 :
+            case 4 : # new contact
                 new = input_contact(text.input_new_contact)
                 model.add_contact(new)
                 print_message(text.contact_saved(new.get('name')))
-            case 5 :
+            case 5 : # search
                 word = input_return(text.search_word)
                 result = model.search(word)
                 show_contacts(result)
-            case 6 :
+            case 6 : # change
                 word = input_return(text.search_word)
                 result = model.search(word)
                 show_contacts(result)
@@ -32,9 +32,14 @@ def start() :
                 new = input_contact(text.input_change_contact)
                 model.change(int(index), new)
                 old_name = model.phone_book[int(index) - 1].get('name')
-                print_message(text.contact_changed(new.get('name') if new.get('name') else old_name))
-                
-            case 7 :
-                pass # delete
+                print_message(text.contact_changed(new.get('name') if new.get('name') else old_name)) 
+            case 7 : # delete
+                word = input_return(text.search_word)
+                result = model.search(word)
+                show_contacts(result)
+                index = input_return(text.input_index)
+                name = model.phone_book[int(index) - 1].get('name')
+                model.delete_contact(int(index))
+                print_message(text.contact_deleted(name))
             case 8 :
                 break
